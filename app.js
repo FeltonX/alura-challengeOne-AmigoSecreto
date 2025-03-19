@@ -1,0 +1,42 @@
+// Array para armazenar os nomes
+let amigos = [];
+
+// Função para adicionar amigos
+function adicionarAmigo() {
+    const inputNome = document.getElementById("amigo");
+    const nome = inputNome.value.trim();
+
+    if (nome === "") {
+        alert("Por favor, insira um nome.");
+        return;
+    }
+
+    amigos.push(nome);
+    inputNome.value = "";
+    atualizarListaAmigos();
+}
+
+// Função para atualizar a lista de amigos na tela
+function atualizarListaAmigos() {
+    const listaAmigos = document.getElementById("listaAmigos");
+    listaAmigos.innerHTML = "";
+
+    for (let i = 0; i < amigos.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = amigos[i];
+        listaAmigos.appendChild(li);
+    }
+}
+
+// Função para sortear um amigo
+function sortearAmigo() {
+    if (amigos.length === 0) {
+        alert("Adicione pelo menos um amigo antes de sortear!");
+        return;
+    }
+
+    const indiceAleatorio = Math.floor(Math.random() * amigos.length);
+    const amigoSorteado = amigos[indiceAleatorio];
+    const resultado = document.getElementById("resultado");
+    resultado.innerHTML = `<li>Amigo sorteado: ${amigoSorteado}</li>`;
+}
